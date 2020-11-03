@@ -1,19 +1,19 @@
 const mongoose = require('mongoose')
 
-const notesSchema = mongoose.Schema({
+const notesSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, 'Title is required'],
+        required: [true, 'is required'],
         unique: true,
         trim: true,
-        maxlength: [50, 'Title cannot be longer than 50 characters']
+        maxlength: [50, 'cannot be longer than 50 characters']
     },
     description: {
         type: String,
-        required: [true, 'Description is required'],
+        required: [true, 'is required'],
         trim: true,
-        maxlength: [250, 'Description cannot be longer than 250 characters']
+        maxlength: [250, 'cannot be longer than 250 characters']
     }
 })
 
-module.exports = mongoose.model('Notes', notesSchema)
+module.exports = mongoose.models.Notes || mongoose.model('Notes', notesSchema)
