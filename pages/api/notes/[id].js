@@ -1,5 +1,5 @@
-import {dbConnect} from '../../../utils/dbConnection'
-import notesModel from '../../../models/notes'
+import {dbConnect} from '../../../utils/dbConnection';
+import notesModel from '../../../models/notes';
 
 dbConnect()
 

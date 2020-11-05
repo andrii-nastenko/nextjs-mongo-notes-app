@@ -6,7 +6,7 @@ const notesSchema = new mongoose.Schema({
         required: [true, 'is required'],
         unique: true,
         trim: true,
-        maxlength: [50, 'cannot be longer than 50 characters']
+        maxlength: [30, 'cannot be longer than 30 characters']
     },
     description: {
         type: String,

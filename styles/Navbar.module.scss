@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  background-color: #000000D9;
+  padding: 20px;
+
+  a {
+    font-size: 26px;
+  }
+}

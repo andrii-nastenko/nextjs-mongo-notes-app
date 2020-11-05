@@ -1,16 +1,15 @@
-html, body {
-  padding: 0;
-  margin: 0;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  letter-spacing: normal;
-  color: #212529;
+.ant-card {
+  width: 300px;
+  height: fit-content;
+  max-height: 300px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.ant-card-body {
+  overflow: hidden;
+  height: 184px;
+  max-height: 184px;
 }
 
-* {
-  box-sizing: border-box;
+nav + div {
+  background-image: url("../public/background.png");
 }
