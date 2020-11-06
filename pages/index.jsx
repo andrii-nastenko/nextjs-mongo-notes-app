@@ -3,29 +3,34 @@ import Layout from "./components/Layout";
 import {getNotesApi} from "../api/notes";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setNotes} from "../redux/appReducer";
+import {setNotes} from "../redux/notesReducer";
 import {Card, Button} from "antd";
+import Link from "next/link";
 
 export default function Index({notes}) {
-    const state = useSelector(state => state.app)
+    const state = useSelector(state => state.notes)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(setNotes(notes))
-    }, [JSON.stringify(notes)])
+        if (notes.success) {
+            dispatch(setNotes(notes.data))
+        }
+    }, [JSON.stringify(notes.data)])
 
     return (
         <Layout title={'Notes'}>
             <div className={styles.container}>
-                {state.notes.map(n => {
+                {state.notes.map(note => {
                     return (
-                        <Card key={n._id} title={n.title} hoverable
+                        <Card key={note._id} title={note.title} hoverable
                               actions={[
-                                  <Button type="primary">View</Button>,
-                                  <Button type="primary">Edit</Button>
+                                  <Link href={`/${note._id}/edit`}>
+                                      <Button type="primary"> Edit </Button>
+                                  </Link>,
+                                  <Button type="danger">Delete</Button>
                               ]}
                         >
-                            <p>{n.description}</p>
+                            <p>{note.description}</p>
                         </Card>
                     )
                 })}

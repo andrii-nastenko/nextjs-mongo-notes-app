@@ -5,5 +5,9 @@ const instance = axios.create({
 })
 
 export const getNotesApi = async () => {
-    return await instance.get('/api/notes').then(res => res.data.data)
+    return await instance.get('/api/notes').then(res => res.data)
+}
+
+export const createNoteApi = async (note) => {
+    return await instance.post('/api/notes', {...note}).then(res => res.data)
 }

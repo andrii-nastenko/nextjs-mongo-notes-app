@@ -4,13 +4,14 @@ import styles from '../../styles/Layout.module.scss';
 import {useEffect} from "react";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
-import {setIsFetching} from "../../redux/appReducer";
+import {setIsFetching} from "../../redux/notesReducer";
 import {Spin} from "antd";
+import ScrollToTop from "react-scroll-to-top";
 
 export default function Layout({children, title}) {
     const router = useRouter()
     const dispatch = useDispatch()
-    const state = useSelector(state => state.app)
+    const state = useSelector(state => state.notes)
 
     useEffect(() => {
         router.events.on("routeChangeStart", () => dispatch(setIsFetching(true)))
@@ -32,6 +33,7 @@ export default function Layout({children, title}) {
             <Spin size="large" spinning={state.isFetching}>
                 {children}
             </Spin>
+            <ScrollToTop top={400} smooth/>
         </div>
     )
 }

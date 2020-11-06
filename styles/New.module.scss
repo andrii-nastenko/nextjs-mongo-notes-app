@@ -3,4 +3,21 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 75px);
+
+  textarea {
+    height: 250px !important;
+    width: 500px;
+    resize: none;
+  }
+
+  button {
+    margin: 0 auto;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    textarea {
+      width: 300px;
+    }
+  }
 }
