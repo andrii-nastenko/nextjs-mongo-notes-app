@@ -2,6 +2,7 @@
   width: 300px;
   height: fit-content;
   max-height: 300px;
+  cursor: auto;
 }
 
 .ant-card-body {
@@ -10,6 +11,8 @@
   max-height: 184px;
 }
 
-nav + div {
-  background-image: url("../public/background.png");
+.ant-spin {
+  position: fixed !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
 }

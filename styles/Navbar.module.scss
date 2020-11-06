@@ -1,10 +1,13 @@
 .container {
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   background-color: #000000D9;
   padding: 20px;
+  z-index: 1;
 
   a {
     font-size: 26px;
