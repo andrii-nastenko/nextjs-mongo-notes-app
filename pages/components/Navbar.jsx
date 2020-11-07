@@ -8,7 +8,7 @@ export default function Navbar() {
                 <a>Notes</a>
             </Link>
             <Link href={'/new'}>
-                <a>Create note</a>
+                <a>Create Note</a>
             </Link>
         </nav>
     )

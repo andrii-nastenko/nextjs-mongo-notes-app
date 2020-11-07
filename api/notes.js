@@ -15,3 +15,11 @@ export const createNoteApi = async (note) => {
 export const deleteNoteApi = async (id) => {
     return await instance.delete(`api/notes/${id}`).then(res => res.data)
 }
+
+export const getSingleNoteApi = async (id) => {
+    return await instance.get(`api/notes/${id}`).then(res => res.data)
+}
+
+export const updateNoteApi = async (id, {title, description}) => {
+    return await instance.put(`api/notes/${id}`, {title, description}).then(res => res.data)
+}

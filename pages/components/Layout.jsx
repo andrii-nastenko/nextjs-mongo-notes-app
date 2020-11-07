@@ -33,7 +33,7 @@ export default function Layout({children, title}) {
             <Spin size="large" spinning={state.isFetching}>
                 {children}
             </Spin>
-            <ScrollToTop top={400} smooth/>
+            <ScrollToTop top={150} smooth/>
         </div>
     )
 }
