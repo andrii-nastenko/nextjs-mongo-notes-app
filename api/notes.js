@@ -11,3 +11,7 @@ export const getNotesApi = async () => {
 export const createNoteApi = async (note) => {
     return await instance.post('/api/notes', {...note}).then(res => res.data)
 }
+
+export const deleteNoteApi = async (id) => {
+    return await instance.delete(`api/notes/${id}`).then(res => res.data)
+}

@@ -1,18 +1,19 @@
 import styles from '../styles/New.module.scss';
 import Layout from "./components/Layout";
 import {Form, Input, Button} from "antd";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createNote} from "../redux/notesReducer";
+import {useRouter} from "next/router";
 
 export default function New() {
+    const state = useSelector(state => state.notes)
     const dispatch = useDispatch()
-
-    const [form] = Form.useForm()
+    const router = useRouter()
 
     const onFinish = async (note) => {
         const res = await dispatch(createNote(note))
         if (res && res.success) {
-            form.resetFields()
+            await router.push('/')
         }
     }
 
@@ -27,14 +28,14 @@ export default function New() {
     return (
         <Layout title={'Notes | Create Note'}>
             <div className={styles.container}>
-                <Form form={form} onFinish={onFinish} validateMessages={validateMessages} layout={'vertical'}>
+                <Form onFinish={onFinish} validateMessages={validateMessages} layout={'vertical'}>
                     <Form.Item name={'title'} label="Title" rules={[{required: true, max: 30}]}>
                         <Input/>
                     </Form.Item>
                     <Form.Item name={'description'} label="Description" rules={[{required: true, max: 250}]}>
                         <Input.TextArea/>
                     </Form.Item>
-                    <Button type="primary" htmlType="submit">Create</Button>
+                    <Button type="primary" htmlType="submit" loading={state.isCreatingInProcess}>Create</Button>
                 </Form>
             </div>
         </Layout>
