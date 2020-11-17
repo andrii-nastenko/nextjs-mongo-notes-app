@@ -1,9 +1,9 @@
-# Note App
+# Notes App
 
 
 ## Description:
 
-An adaptive full-stack JS application built with SSR and REST API (CRUD) 
+Full-stack app. Built with Next.js, Node.js and MongoDB (REST API)
 
 ## Technologies Used:
 

@@ -22,7 +22,7 @@ export default function Index({notes}) {
         if (notes.success) {
             dispatch(setNotes(notes.data))
         }
-    }, [JSON.stringify(notes.data)])
+    }, [dispatch])
 
     return (
         <Layout title={'Notes'}>
@@ -44,10 +44,6 @@ export default function Index({notes}) {
                                       <Link href={`${note._id}/edit`}>
                                           <Button type="primary">Edit</Button>
                                       </Link>,
-                                      // <Button onClick={() => deleteNoteHandler(note._id)} type="danger"
-                                      //         loading={state.isDeletingInProcess.some(id => id === note._id)}>
-                                      //     Delete
-                                      // </Button>
                                       <Button type={'danger'} onClick={() => {
                                           dispatch(setIsModalVisible(true))
                                           setDeleteId(note._id)
@@ -72,7 +68,12 @@ export default function Index({notes}) {
     )
 }
 
-export const getServerSideProps = async () => {
+export async function getServerSideProps() {
     const notes = await getNotesApi()
     return {props: {notes}}
 }
+
+// export async function getStaticProps () {
+//     const notes = await getNotesApi()
+//     return {props: {notes}}
+// }

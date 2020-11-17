@@ -2,7 +2,7 @@ import styles from '../../styles/Edit.module.scss';
 import Layout from "../components/Layout";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Form, Input} from "antd";
-import {getSingleNoteApi} from "../../api/notes";
+import {getNotesApi, getSingleNoteApi} from "../../api/notes";
 import {updateNote} from "../../redux/notesReducer";
 import {useRouter} from "next/router";
 
@@ -47,7 +47,19 @@ export default function Edit({note}) {
     )
 }
 
-export const getServerSideProps = async ({query: {id}}) => {
+export async function getServerSideProps({query: {id}}) {
     const note = await getSingleNoteApi(id)
     return {props: {note}}
 }
+
+// export async function getStaticPaths() {
+//     const notes = await getNotesApi()
+//     const paths = notes.data.map(note => `/${note._id}/edit`)
+//     return {paths, fallback: false}
+// }
+//
+// export async function getStaticProps({params: {id}}) {
+//     const note = await getSingleNoteApi(id)
+//     return {props: {note}}
+// }
+
