@@ -11,7 +11,7 @@ import ScrollToTop from "react-scroll-to-top";
 export default function Layout({children, title}) {
     const router = useRouter()
     const dispatch = useDispatch()
-    const state = useSelector(state => state.notes)
+    const state = useSelector(state => state)
 
     useEffect(() => {
         router.events.on("routeChangeStart", () => dispatch(setIsFetching(true)))

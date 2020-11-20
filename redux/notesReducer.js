@@ -10,9 +10,12 @@ const IS_NOTE_DELETING = "IS_NOTE_DELETING"
 const UPDATE_NOTE = "UPDATE_NOTE"
 const SET_IS_NOTE_UPDATING = "SET_IS_NOTE_UPDATING"
 const SET_IS_MODAL_VISIBLE = "SET_IS_MODAL_VISIBLE"
+const SET_PAGE_NUMBER = "SET_PAGE_NUMBER"
 
 const initialState = {
     notes: [],
+    pageNumber: 1,
+    totalCount: 0,
     isDeletingInProcess: [],
     isCreatingInProcess: false,
     isUpdatingInProcess: false,
@@ -24,7 +27,11 @@ export const notesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_NOTES:
             return {
-                ...state, notes: [...action.notes]
+                ...state, notes: [...action.notes], totalCount: action.totalCount
+            }
+        case SET_PAGE_NUMBER:
+            return {
+                ...state, pageNumber: action.pageNumber
             }
         case SET_IS_FETCHING:
             return {
@@ -75,9 +82,10 @@ export const notesReducer = (state = initialState, action) => {
     }
 }
 
-export const setNotes = (notes) => ({type: SET_NOTES, notes})
+export const setNotes = (notes, totalCount) => ({type: SET_NOTES, notes, totalCount})
 export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching})
 export const setIsModalVisible = (isModalVisible) => ({type: SET_IS_MODAL_VISIBLE, isModalVisible})
+export const setPageNumber = (pageNumber) => ({type: SET_PAGE_NUMBER, pageNumber})
 const createNoteAction = (note) => ({type: CREATE_NOTE, note})
 const isNoteCreating = (boolean) => ({type: SET_IS_NOTE_CREATING, boolean})
 const deleteNoteAction = (id) => ({type: DELETE_NOTE, id})

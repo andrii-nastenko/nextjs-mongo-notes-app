@@ -2,12 +2,12 @@ import styles from '../../styles/Edit.module.scss';
 import Layout from "../components/Layout";
 import {useDispatch, useSelector} from "react-redux";
 import {Button, Form, Input} from "antd";
-import {getNotesApi, getSingleNoteApi} from "../../api/notes";
+import {getSingleNoteApi} from "../../api/notes";
 import {updateNote} from "../../redux/notesReducer";
 import {useRouter} from "next/router";
 
 export default function Edit({note}) {
-    const state = useSelector(state => state.notes)
+    const state = useSelector(state => state)
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -15,7 +15,7 @@ export default function Edit({note}) {
         const id = router.query.id
         const res = await dispatch(updateNote(id, note))
         if (res && res.success) {
-            router.push('/')
+            router.push(`/?page=${state.pageNumber}`)
         }
     }
 

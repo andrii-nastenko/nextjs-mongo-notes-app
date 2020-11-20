@@ -3,14 +3,16 @@ import Layout from "./components/Layout";
 import {getNotesApi} from "../api/notes";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deleteNote, setIsModalVisible, setNotes} from "../redux/notesReducer";
-import {Card, Button} from "antd";
+import {deleteNote, setIsModalVisible, setNotes, setPageNumber} from "../redux/notesReducer";
+import {Card, Button, Pagination} from "antd";
 import Link from "next/link";
 import CustomModal from "./components/CustomModal";
+import {useRouter} from "next/router";
 
 export default function Index({notes}) {
-    const state = useSelector(state => state.notes)
+    const state = useSelector(state => state)
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const [deleteId, setDeleteId] = useState('')
 
@@ -18,9 +20,20 @@ export default function Index({notes}) {
         dispatch(deleteNote(deleteId))
     }
 
+    const paginationHandler = (page) => {
+        router.push(`?page=${page}`)
+        dispatch(setPageNumber(page))
+    }
+
     useEffect(() => {
         if (notes.success) {
-            dispatch(setNotes(notes.data))
+            dispatch(setNotes(notes.data.notes, notes.data.totalCount))
+        }
+    }, [dispatch, JSON.stringify(notes)])
+
+    useEffect(() => {
+        if (router.query.page) {
+            dispatch(setPageNumber(Number(router.query.page)))
         }
     }, [dispatch])
 
@@ -64,12 +77,14 @@ export default function Index({notes}) {
                     </div>
                 }
             </div>
+            <Pagination defaultCurrent={1} current={state.pageNumber} total={state.totalCount}
+                        onChange={paginationHandler}/>
         </Layout>
     )
 }
 
-export async function getServerSideProps() {
-    const notes = await getNotesApi()
+export async function getServerSideProps({query: {page}}) {
+    const notes = await getNotesApi({page})
     return {props: {notes}}
 }
 

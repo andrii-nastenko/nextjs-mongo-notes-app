@@ -3,11 +3,11 @@ import {notesReducer} from "./notesReducer";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 
-const rootReducer = combineReducers({
-    notes: notesReducer
-})
+// const rootReducer = combineReducers({
+//     notes: notesReducer
+// })
 
-export const store = createStore(rootReducer, compose(
+export const store = createStore(notesReducer, compose(
     applyMiddleware(thunk),
     composeWithDevTools() ? composeWithDevTools() : f => f
 ))

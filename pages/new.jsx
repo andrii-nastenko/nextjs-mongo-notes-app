@@ -6,14 +6,14 @@ import {createNote} from "../redux/notesReducer";
 import {useRouter} from "next/router";
 
 export default function New() {
-    const state = useSelector(state => state.notes)
+    const state = useSelector(state => state)
     const dispatch = useDispatch()
     const router = useRouter()
 
     const onFinish = async (note) => {
         const res = await dispatch(createNote(note))
         if (res && res.success) {
-            router.push('/')
+            router.push(`/?page=${state.pageNumber}`)
         }
     }
 
