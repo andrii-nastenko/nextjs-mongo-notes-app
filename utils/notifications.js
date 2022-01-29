@@ -1,8 +1,16 @@
-import {notification} from "antd";
+import { notification } from 'antd';
 
-export const notificationError = (message) => notification.error({
-    message: message.toString(), duration: 5, placement: 'bottomRight'
-})
-export const notificationSuccess = (message) => notification.success({
-    message: message.toString(), duration: 5, placement: 'bottomRight'
-})
+const settings = (message) => ({
+  message: message.toString(),
+  duration: 2,
+  placement: 'bottomRight'
+});
+
+export const notifications = {
+  error(message) {
+    return notification.error(settings(message));
+  },
+  success(message) {
+    return notification.success(settings(message));
+  }
+};
