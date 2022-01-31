@@ -46,7 +46,7 @@ export default async (req, res) => {
       }
       break;
     default:
-      res.status(500).json({ success: false, error: 'Unknown server error' });
+      res.status(405).json({ success: false, error: 'Method Not Allowed' });
       break;
   }
 };
