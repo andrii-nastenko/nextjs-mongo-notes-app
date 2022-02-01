@@ -1,7 +1,8 @@
 {
   "name": "notes",
   "version": "1.6.0",
-  "private": true,
+  "license": "MIT",
+  "author": "Andrii Nastenko",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
